@@ -1,21 +1,19 @@
-app.controller('loginController', function($scope, APIFactory) {
+app.controller('loginController', function($scope, APIFactory, sessionService, $rootScope, $location) {
 
-  $scope.orderBySearch = '';
-  $scope.orderByTerm = true;
 
-  $scope.sortMethod = function(name){
-    if($scope.orderBySearch == name){
-      $scope.orderByTerm = !$scope.orderByTerm;
-    } else {
-      $scope.orderBySearch = name;
-    }
+  sessionService.removeSession();
+
+  $scope.login = function(user){
+
+    APIFactory.loginUser(user).then(function (response){
+        var sesionObject  = response.data.session;
+        sessionService.createStoredSession(sesionObject.session_key, sesionObject.session_id);
+        $rootScope.redirect = $location.path();
+        $location.path("/select");
+    }, function(error){
+      //there was an error to it
+      window.alert("Login Incomplete. Please Try again");
+    });
   }
-
-
-  APIFactory.getPopular().then(function (response){
-      console.log(response.data.data);
-      $scope.popularArray = response.data.data;
-  });
-
 
 });

@@ -1,12 +1,15 @@
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider
-  .when("/", {
+  .when("/login", {
       templateUrl : "views/login.html",
       controller : "loginController"
   })
   .when("/select", {
       templateUrl : "views/select.html",
-      controller : "selectController"
+      controller : "selectController",
+      resolve: {
+        'data': isAuthenticated
+      }
   })
   .otherwise({
     templateUrl : "views/404.html",
@@ -15,23 +18,20 @@ app.config(['$routeProvider', function($routeProvider) {
 }]);
 
 
-var isAuthenticated = function ($rootScope, $location, sessionService,) {
+var isAuthenticated = function ($rootScope, $location, sessionService, APIFactory) {
     var session = sessionService.hasRecentSession();
     if (session) {
         $rootScope.isLoggedIn = true;
 
-        UserFactory.getAuth().then(function (response){
-            var data = response.data.data;
-            if (data.auth_level == 1){
-                $rootScope.AuthUser = true;
-            } else {
-                $rootScope.AuthUser = false;
-            }
+        //API FACTORY CALL
+        APIFactory.checkSession(session).then(function (response){
+          console.log(response);
         }, function(error){
-            window.alert('Network Error. Please try again.');
-            $location.path('/');
+          console.log('lololol');
+          $rootScope.redirect = $location.path();
+          $location.path("/login");
         });
-        return true;
+
     } else {
         $rootScope.redirect = $location.path();
         $location.path("/login");
