@@ -73,6 +73,22 @@ app.factory('APIFactory', function($http, $rootScope){
             });
       }
 
+      data.checkToken = function(token) {
+            return $http({
+                method: "POST",
+                url: baseURL + '/checkToken.php',
+                data: serializeData ({
+                  "token"    : token,
+
+                }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+      }
+
+
+
 
   return data;
 });
