@@ -30,12 +30,10 @@ var isAuthenticated = function ($rootScope, $location, sessionService, APIFactor
     var session = sessionService.hasRecentSession();
     if (session) {
         $rootScope.isLoggedIn = true;
-
         //API FACTORY CALL
         APIFactory.checkSession(session).then(function (response){
           console.log(response);
         }, function(error){
-          console.log('lololol');
           $rootScope.redirect = $location.path();
           $location.path("/login");
         });

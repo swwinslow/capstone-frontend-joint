@@ -44,7 +44,6 @@ app.factory('APIFactory', function($http, $rootScope){
     }
 
     data.checkSession = function (session) {
-      console.log(session);
           return $http({
               method: "POST",
               url: baseURL + '/SessionCheck.php',

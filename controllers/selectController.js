@@ -1,9 +1,14 @@
-app.controller('selectController', function($scope, APIFactory) {
+app.controller('selectController', function($scope, APIFactory, $rootScope) {
 
+      $scope.sendToJoplin = function(){
+        window.location = "http://willshare.com/cs495/ScottJoplinOnlineArchive";
+      }
+// http://localhost:8888/capstone-frontend/#/
+      $scope.sendToMidwest = function(){
+        window.location = "http://willshare.com/cs495/MidwestRadioPlayer/frontend/#/";
+      }
 
-console.log("lol");
-
-      $scope.myFunc = function(){
-        console.log("pop");
+      $scope.sendToSchool = function(){
+        window.location = "http://willshare.com/cs495/OurPhoneSchool/";
       }
 });
