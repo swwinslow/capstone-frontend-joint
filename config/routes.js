@@ -17,7 +17,14 @@ app.config(['$routeProvider', function($routeProvider) {
   })
   .when("/resetpassword/:token", {
       templateUrl : "views/resetPassword.html",
-      controller : "resetPasswordController"
+      controller : "resetPasswordController",
+      resolve: {
+        'data' : isTokenValid
+      }
+  })
+  .when("/reset", {
+      templateUrl : "views/ForgotPassword.html",
+      controller : "ForgotPasswordController"
   })
   .otherwise({
     templateUrl : "views/404.html",
@@ -35,7 +42,7 @@ var isAuthenticated = function ($rootScope, $location, sessionService, APIFactor
           console.log(response);
         }, function(error){
           $rootScope.redirect = $location.path();
-          $location.path("/login");
+
         });
 
     } else {
@@ -46,21 +53,17 @@ var isAuthenticated = function ($rootScope, $location, sessionService, APIFactor
 
 var isTokenValid = function ($rootScope, $location, sessionService, APIFactory, $routeParams) {
 
+        // console.log($routeParams.token);
 
-    // if (session) {
-    //     $rootScope.isLoggedIn = true;
-    //
-    //     //API FACTORY CALL
-    //     APIFactory.checkToken(session).then(function (response){
-    //       console.log(response);
-    //     }, function(error){
-    //       console.log('lololol');
-    //       $rootScope.redirect = $location.path();
-    //       $location.path("/login");
-    //     });
-    //
-    // } else {
-    //     $rootScope.redirect = $location.path();
-    //     $location.path("/login");
-    // }
+        // var token = $routeParams.token;
+        // //API FACTORY CALL
+        // APIFactory.checkToken(token).then(function (response){
+        //   console.log(response);
+        // }, function(error){
+        //   console.log('lololol');
+        //   $rootScope.redirect = $location.path();
+        //   $location.path("/login");
+        // });
+
+
 };

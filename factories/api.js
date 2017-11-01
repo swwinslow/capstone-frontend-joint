@@ -57,14 +57,12 @@ app.factory('APIFactory', function($http, $rootScope){
           });
       }
 
-      data.testEmail = function(user) {
-        console.log(session);
+      data.sendEmail = function(email) {
             return $http({
                 method: "POST",
-                url: baseURL + '/emailTest.php',
+                url: baseURL + '/ResetPassword.php',
                 data: serializeData ({
-                  "email"    : user.email,
-
+                  "email"    : email,
                 }),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -78,7 +76,6 @@ app.factory('APIFactory', function($http, $rootScope){
                 url: baseURL + '/checkToken.php',
                 data: serializeData ({
                   "token"    : token,
-
                 }),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -86,8 +83,19 @@ app.factory('APIFactory', function($http, $rootScope){
             });
       }
 
-
-
+      data.changePassword = function(token, password) {
+            return $http({
+                method: "POST",
+                url: baseURL + '/changePassword.php',
+                data: serializeData ({
+                  "token"    : token,
+                  "password" : password
+                }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+      }
 
   return data;
 });

@@ -16,4 +16,9 @@ app.controller('loginController', function($scope, APIFactory, sessionService, $
     });
   }
 
+  $scope.resetForm = function(){
+    $location.path("/reset");
+
+  }
+
 });
