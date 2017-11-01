@@ -10,15 +10,13 @@ app.controller('loginController', function($scope, APIFactory, sessionService, $
         sessionService.createStoredSession(sesionObject.session_key, sesionObject.session_id);
         $rootScope.redirect = $location.path();
         $location.path("/select");
-    }, function(error){
-      //there was an error to it
-      window.alert("Login Incomplete. Please Try again");
-    });
+      }, function (error){
+          window.alert("Login Incomplete. Please Try again");
+      });
   }
 
   $scope.resetForm = function(){
     $location.path("/reset");
-
   }
 
 });

@@ -3,7 +3,7 @@ app.controller('resetPasswordController', function($scope, APIFactory, sessionSe
       $scope.token = $routeParams.token;
 
       APIFactory.checkToken($scope.token).then(function (response){
-        console.log(response);
+
       }, function (error){
         window.alert('Token has expired.');
         $location.path('/login');
@@ -17,7 +17,7 @@ app.controller('resetPasswordController', function($scope, APIFactory, sessionSe
 
         APIFactory.changePassword($scope.token, $scope.p1).then(function (response){
             console.log(response);
-
+            $location.path('/');
         }, function (error){
           console.log(error);
         });

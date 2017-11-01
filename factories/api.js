@@ -97,5 +97,11 @@ app.factory('APIFactory', function($http, $rootScope){
             });
       }
 
+
+      data.getUsers = function() {
+        return $http.get(baseURL + '/UserInformation.php');
+      }
+
+
   return data;
 });
