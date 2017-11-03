@@ -1,4 +1,4 @@
-app.controller('selectController', function($scope, APIFactory, $rootScope) {
+app.controller('selectController', function($scope, APIFactory, $rootScope, $location) {
 
       $scope.sendToJoplin = function(){
         window.location = "http://willshare.com/cs495/ScottJoplinOnlineArchive";
@@ -10,5 +10,10 @@ app.controller('selectController', function($scope, APIFactory, $rootScope) {
 
       $scope.sendToSchool = function(){
         window.location = "http://willshare.com/cs495/OurPhoneSchool/";
+      }
+
+      $scope.manageUsers = function(){
+        console.log('lol');
+        $location.path("/users");
       }
 });
