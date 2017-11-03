@@ -138,6 +138,10 @@ td{
   border-right: 1px solid #000000;
 }
 
+td.td-btn{
+  text-align: center;
+}
+
 .user-container input[type=text]{
     margin-bottom: 8px;
     border: none;
