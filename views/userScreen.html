@@ -29,3 +29,27 @@
     </div>
   </div>
 </div>
+
+<button ng-click="showNewUser()"> New User</button>
+
+<div class="container user-container" ng-show="newUserTable">
+  <div class="row">
+    <div class="col-12">
+      <table>
+        <thead>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Save</th>
+
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="text" ng-model="newUser.email" required></td>
+            <td><input type="password" ng-model="newUser.password" required></td>
+            <td class="td-btn"><button ng-click="saveNewUser(newUser)" > Save New User </button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
