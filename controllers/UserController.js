@@ -27,6 +27,15 @@ app.controller('UserController', function($scope, APIFactory, $rootScope, $route
       };
 
     $scope.deleteAdmin = function (id){
+
+        APIFactory.deleteAdmin(id).then(function (response){
+
+        });
+        $route.reload();
+
+    };
+
+    $scope.deleteAdmin = function (id){
         //SEND TO APIFactor
         // no longer an admin
         console.log('delete admin');
@@ -68,7 +77,7 @@ app.controller('UserController', function($scope, APIFactory, $rootScope, $route
         APIFactory.createNewUser(newUser).then(function (response){
 
         });
-        $route.reload();
+        $route. reload();
       }
 
 

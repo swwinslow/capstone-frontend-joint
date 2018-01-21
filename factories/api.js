@@ -112,6 +112,21 @@ app.factory('APIFactory', function($http, $rootScope){
             });
       };
 
+    data.deleteAdmin = function(id) {
+        return $http({
+            method: "POST",
+            url: baseURL + '/DeleteAdmin.php',
+            data: serializeData ({
+                "user_id"    : id,
+                "session_id"    : $rootScope.userSessionId,
+                "session_key"   : $rootScope.userSessionKey
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+    };
+
         data.deleteAdmin = function(id) {
             return $http({
                 method: "POST",
