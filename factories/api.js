@@ -97,6 +97,81 @@ app.factory('APIFactory', function($http, $rootScope){
             });
       }
 
+      data.makeAdmin = function(id) {
+            return $http({
+                method: "POST",
+                url: baseURL + '/MakeAdmin.php',
+                data: serializeData ({
+                  "user_id"    : id,
+                  "session_id"    : $rootScope.userSessionId,
+                  "session_key"   : $rootScope.userSessionKey
+                }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+      };
+
+    data.deleteAdmin = function(id) {
+        return $http({
+            method: "POST",
+            url: baseURL + '/DeleteAdmin.php',
+            data: serializeData ({
+                "user_id"    : id,
+                "session_id"    : $rootScope.userSessionId,
+                "session_key"   : $rootScope.userSessionKey
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+    };
+
+        data.deleteAdmin = function(id) {
+            return $http({
+                method: "POST",
+                url: baseURL + '/DeleteAdmin.php',
+                data: serializeData ({
+                    "user_id"       : id,
+                    "session_id"    : $rootScope.userSessionId,
+                    "session_key"   : $rootScope.userSessionKey
+                }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+        };
+
+      data.createNewUser = function(newUser) {
+            return $http({
+                method: "POST",
+                url: baseURL + '/createUsers.php',
+                data: serializeData ({
+                  "email"    : newUser.email,
+                  "password" : newUser.password,
+                  "session_id"    : $rootScope.userSessionId,
+                  "session_key"   : $rootScope.userSessionKey
+                }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+      }
+
+      data.deleteUser = function(id) {
+            return $http({
+                method: "POST",
+                url: baseURL + '/DeleteUser.php',
+                data: serializeData ({
+                  "id"    : id,
+                  "session_id"    : $rootScope.userSessionId,
+                  "session_key"   : $rootScope.userSessionKey
+                }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+      }
 
       data.getUsers = function() {
         return $http.get(baseURL + '/UserInformation.php');
